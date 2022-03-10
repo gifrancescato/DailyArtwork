@@ -46,7 +46,7 @@ export default function ArtworksList() {
             setImage(response.data.items[0].edmPreview[0])
           console.log(response.data)
           
-        setDescription(response.data.items[0].dcDescription[0])
+        setDescription(response.data.items[0].title[0])
           setFetching(false);
         });
       }, []);
@@ -60,7 +60,7 @@ export default function ArtworksList() {
     const handleSubmit = (e) => {
         e.preventDefault();
         const image = artworks.edmPreview[0];
-        const description = artworks.dcDescription[0];
+        const description = artworks.title[0];
     
         axios
           .post(`/api/artworks`, { image, description }, { headers: { Authorization: `Bearer ${storedToken}` } })
