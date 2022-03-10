@@ -6,7 +6,7 @@ const artworkSchema= new Schema ({
     // picture: Image,
     image: String,
     description: String,
-    // tasks: [{ type: Schema.Types.ObjectId, ref: 'Task' }]
+    owner: { type: Schema.Types.ObjectId, ref: 'User' }
 });
 
 const Artworks= mongoose.model('Artworks', artworkSchema );

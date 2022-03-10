@@ -2,6 +2,7 @@ const router = require("express").Router();
 const bcrypt = require('bcryptjs')
 const User = require('../models/User')
 const jwt = require('jsonwebtoken');
+const { isAuthenticated } = require("../middleware/jwt");
 
 router.post('/signup', (req, res, next) => {
 	const { email, password, name } = req.body
@@ -73,10 +74,10 @@ router.post('/login', (req, res, next) => {
 		})
 });
 
-// router.get('/verify', isAuthenticated, (req, res, next) => {
-// 	// if the token is valid we can access it on : req.payload
-// 	console.log('request payload is: ', req.payload)
-// 	res.status(200).json(req.payload)
-// });
+router.get('/verify', isAuthenticated, (req, res, next) => {
+	// if the token is valid we can access it on : req.payload
+	console.log('request payload is: ', req.payload)
+	res.status(200).json(req.payload)
+});
 
 module.exports = router;

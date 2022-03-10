@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const { isAuthenticated } = require("../middleware/jwt");
 const Artworks = require("../models/Artworks");
 const artworkSchema = require('../models/Artworks');
 
@@ -7,9 +8,10 @@ router.get("/", (req, res, next) => {
 });
 
 //create an artwokr
-router.post('/artworks', (req, res, next) =>{
-  const { title, description } = req.body
-  Artworks.create({ title, description })
+router.post('/artworks', isAuthenticated, (req, res, next) =>{
+  const { image, description } = req.body
+  console.log(req.payload)
+  Artworks.create({ image, description, owner:req.payload._id })
   .then(project => {
       res.status(201).json(project)
   })
@@ -35,13 +37,14 @@ router.get('/id:', (req, res, next) => {
 // You put the next routes here 👇
 // example: router.use("/auth", authRoutes)
 
-//get all the artworks
-// router.get('/', (req, res, next) => {
-//   Artworks.find()
-//   .then(artworks => {
-//     res.status(200).json(artworks)
-//   })
-// })
+// get all the artworks
+router.get('/myArtworks', (req, res, next) => {
+  Artworks.find()
+  .then(artworks => {
+    console.log('test', artworks)
+    res.status(200).json(artworks)
+  })
+})
 
 
 // //update an artwork

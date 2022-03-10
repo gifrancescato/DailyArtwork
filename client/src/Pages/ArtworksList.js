@@ -10,11 +10,13 @@ export default function ArtworksList() {
     const [show, setShow] = useState(true);
     const [image, setImage] = useState("");
     const [description, setDescription] = useState("");
+    const storedToken = localStorage.getItem('authToken')
+    console.log(storedToken)
      
     // console.log(artworks.dcDescription)
     //get all the artworks API
 
-    const apiURL = "https://api.europeana.eu/record/v2/search.json?query=*&wskey=medrolidit&qf=TYPE:IMAGE&qf=COMPLETENESS:10&qf=COUNTRY:EUROPE";
+    const apiURL = "https://api.europeana.eu/record/v2/search.json?media=true&profile=standard&query=*&1&theme=art&completeness=10&wskey=medrolidit";
     // const apiURL = "https://api.europeana.eu/record/v2/search.json?media=true&profile=standard&query=*&1&theme=art&completeness=10&wskey=medrolidit"; &qf=COUNTRY:EUROPE&QF=DCLANGUAGE:EN
     // 
 
@@ -29,7 +31,7 @@ export default function ArtworksList() {
             // console.log("test", response.data.edmPreview)
             setArtworks(response.data)
             setImage(response.data.edmPreview[0])
-            setDescription(response.data.dcDescription[0])
+            setDescription(response.data.title[0])
         })
         .catch(err=> {
             console.log(err)
@@ -42,7 +44,7 @@ export default function ArtworksList() {
           console.log(response.data.items[Math.floor(Math.random()*response.data.items.length)]);
           setArtworks(response.data.items[Math.floor(Math.random()*response.data.items.length)]);
           setImage(response.data.edmPreview[0])
-            setDescription(response.data.dcDescription[0])
+        setDescription(response.data.dcDescription[0])
           setFetching(false);
         });
       }, []);
@@ -53,19 +55,31 @@ export default function ArtworksList() {
         console.log("test",requestBody)
     }
 
-      const handleSubmit = (e) => {                          // <== ADD
+    const handleSubmit = (e) => {
         e.preventDefault();
-     
-        
+        const image = artworks.edmPreview[0];
+        const description = artworks.dcDescription[0];
+    
         axios
-          .post(`/api/artworks`, requestBody)
+          .post(`/api/artworks`, { image, description }, { headers: { Authorization: `Bearer ${storedToken}` } })
           .then((response) => {
             // Reset the state
-            setImage("");
-            setDescription("");
+            setImage('');
+            setDescription('');
           })
           .catch((error) => console.log(error));
       };
+    
+      const getFavourite = () => {         
+        axios
+          .get(`${API_URL}/api/projects/${projectId}`)
+          .then((response) => {
+            const oneProject = response.data;
+            setProject(oneProject);
+          })
+          .catch((error) => console.log(error));
+      };
+    
       
     if (artworks) {
       
@@ -80,9 +94,9 @@ export default function ArtworksList() {
             </img>
             )}
 
-            {artworks.dcDescription && (
+            {artworks.title && (
             <h2>
-                {artworks.dcDescription[0]}
+                {artworks.title[0]}
             </h2>
             )}
             

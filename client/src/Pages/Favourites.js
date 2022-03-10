@@ -11,10 +11,12 @@ const API_URL = "http://localhost:5005";
  
 function FavouriteListPage() {
   const [artworks, setArtworks] = useState([]);
- 
+  const storedToken = localStorage.getItem('authToken')
+
   const getAllArtworks = () => {
     axios
-      .get(`/api/artworks`)
+      .get(`/api/myArtworks`, { headers: { Authorization: `Bearer ${storedToken}` }})
+
       .then((response) => setArtworks(response.data))
       .catch((error) => console.log(error));
   };
@@ -23,7 +25,8 @@ function FavouriteListPage() {
     getAllArtworks();
   }, [] );
  
-  
+  console.log(artworks)
+
   return (
     <div className="FavouriteListPage">
       
@@ -33,9 +36,9 @@ function FavouriteListPage() {
         {artworks.map((artwork) => {
           return (
             <div className="ProjectCard card" key={artwork._id} >
-              <Link to={`/artworks/${artwork._id}`}>
-                <h3>{artwork.title}</h3>
-              </Link>
+              <img src={artwork.image} /> 
+                <h3>{artwork.description}</h3>
+              
             </div>
           );
         })}     
