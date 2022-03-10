@@ -2,7 +2,6 @@ const router = require("express").Router();
 const bcrypt = require('bcryptjs')
 const User = require('../models/User')
 const jwt = require('jsonwebtoken');
-// const { isAuthenticated } = require("../middleware/jwt");
 
 router.post('/signup', (req, res, next) => {
 	const { email, password, name } = req.body
@@ -11,12 +10,7 @@ router.post('/signup', (req, res, next) => {
 		res.status(400).json({ message: 'Provide email, password and name' })
 		return
 	}
-	// validate the email address
-	// const emailValid = email.includes('@')
-	// if (!emailValid) {
-	// 	res.status(400).json({ message: 'Provide a valid email address' })
-	// 	return
-	// }
+	
 	if (password.length < 4) {
 		res.status(400).json({ message: 'Password has to be 4 chars min' })
 		return

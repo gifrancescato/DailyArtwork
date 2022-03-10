@@ -4,9 +4,9 @@ const Schema= mongoose.Schema;
 
 const artworkSchema= new Schema ({
     // picture: Image,
-    title: String,
+    image: String,
     description: String,
-
+    // tasks: [{ type: Schema.Types.ObjectId, ref: 'Task' }]
 });
 
 const Artworks= mongoose.model('Artworks', artworkSchema );

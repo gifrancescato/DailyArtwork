@@ -17,10 +17,13 @@ require("./config")(app);
 // 👇 Start handling routes here
 // Contrary to the views version, all routes are controlled from the routes/index.js
 const allRoutes = require("./routes/artworks");
-app.use("/api/artworks", allRoutes);
+app.use("/api", allRoutes);
 
 const auth = require("./routes/auth");
 app.use("/api/auth", auth);
+
+const artworksRouter = require('./routes/artworks');     // <== IMPORT
+app.use('/api', artworksRouter); 
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);
