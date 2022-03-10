@@ -6,7 +6,7 @@ import axios from "axios";
 
 import addArtwork from "../components/addArtwork"; //  <== IMPORT
  
-const API_URL = "http://localhost:5005";
+const API_URL = "https://daily-eu-art.herokuapp.com/";
  
  
 function FavouriteListPage() {

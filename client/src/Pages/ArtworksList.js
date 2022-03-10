@@ -26,7 +26,7 @@ export default function ArtworksList() {
 
     const getAllArtworks =() => {
         //request 'api/projects'
-        axios.get('http://localhost:5005/api/artworks')
+        axios.get('/api/artworks')
         .then(response => {
             // console.log("test", response.data.edmPreview)
             setArtworks(response.data)
@@ -43,8 +43,10 @@ export default function ArtworksList() {
         axios.get(apiURL).then((response) => {
           console.log(response.data.items[Math.floor(Math.random()*response.data.items.length)]);
           setArtworks(response.data.items[Math.floor(Math.random()*response.data.items.length)]);
-          setImage(response.data.edmPreview[0])
-        setDescription(response.data.dcDescription[0])
+            setImage(response.data.items[0].edmPreview[0])
+          console.log(response.data)
+          
+        setDescription(response.data.items[0].dcDescription[0])
           setFetching(false);
         });
       }, []);
