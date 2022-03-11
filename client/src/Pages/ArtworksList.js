@@ -16,8 +16,8 @@ export default function ArtworksList() {
     // console.log(artworks.dcDescription)
     //get all the artworks API
 
-    const apiURL = "https://api.europeana.eu/record/v2/search.json?media=true&profile=standard&query=*&1&theme=art&completeness=10&wskey=medrolidit";
-    // const apiURL = "https://api.europeana.eu/record/v2/search.json?media=true&profile=standard&query=*&1&theme=art&completeness=10&wskey=medrolidit"; &qf=COUNTRY:EUROPE&QF=DCLANGUAGE:EN
+    //const apiURL = "https://api.europeana.eu/record/v2/search.json?media=true&profile=standard&query=*&1&theme=art&completeness=10&wskey=medrolidit";
+    const apiURL = "https://api.europeana.eu/record/v2/search.json?media=true&profile=standard&query=*&1&theme=art&completeness=10&wskey=medrolidit&qf=COUNTRY:EUROPE&QF=DCLANGUAGE:EN"
     // 
 
     useEffect(() => {
