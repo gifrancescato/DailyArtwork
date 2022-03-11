@@ -31,21 +31,23 @@ export default function Signup() {
 
 	return (
 		<>
+		<div className="signupWrap">
 			<h1>Signup</h1>
 			<form onSubmit={handleSubmit}>
-				<label htmlFor="email">Email: </label>
-				<input type="text" value={email} onChange={handleEmail} />
-				<label htmlFor="password">Password: </label>
-				<input type="password" value={password} onChange={handlePassword} />
-				<label htmlFor="name">Name: </label>
-				<input type="text" value={name} onChange={handleName} />
-				<button type="submit">Sign Up</button>
+				<div><label htmlFor="email">Email: </label>
+				<input className="input" type="text" value={email} onChange={handleEmail} /></div>
+				<div><label htmlFor="password">Password: </label>
+				<input className="input" type="password" value={password} onChange={handlePassword} /></div>
+				<div><label htmlFor="name">Name: </label>
+				<input className="input" type="text" value={name} onChange={handleName} /></div>
+				<button className="buttons" type="submit">Sign Up</button>
 			</form>
 
 			{errorMessage && <h5>{errorMessage}</h5>}
 
 			<h3>Already have an account?</h3>
 			<Link to='/login'>Login</Link>
+		</div>
 		</>
 	)
 }

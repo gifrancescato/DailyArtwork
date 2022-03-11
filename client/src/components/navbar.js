@@ -7,26 +7,28 @@ export default function Navbar() {
 	const { isLoggedIn, user, logoutUser } = useContext(AuthContext)
 
 	return (
-		<nav >
+		<nav className="nav" >
 			{/* <Link to='/'>
 				<button>Home</button>
 			</Link> */}
 			{isLoggedIn ?
 				(
 					<>
+						<div className='buttonsNavDiv' >
 						<Link  to='/favourites'>
-							<button>Favourites</button>
-						</Link>
-						<button onClick={logoutUser}>Logout</button>
+							<button className='buttonsNav'>Favourites</button>
+						</Link >
+							<button className='buttonsNav' onClick={logoutUser}>Logout</button>
+							</div>
 					</>
 				) : (
 					<>
-					 <div>
+					 <div className="buttonsNav">
 						<Link to='/signup'>
-							<button className="buttons" >Signup</button>
+							<button className="buttonsNav" >Signup</button>
 						</Link>
 						<Link to='/login'>
-							<button className="buttons">Login</button>
+							<button className="buttonsNav">Login</button>
 						</Link>
 						</div>
 					</>

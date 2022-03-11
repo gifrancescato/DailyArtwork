@@ -7,31 +7,41 @@ import { Link } from 'react-router-dom';
 
 export default function Home() {
   
-    return (
+return (
        
 <>
-
-<h1 className="title" >
-            🏰 Home 🏰
+  <div className="auth-wrapper">
+    <div className="auth-box">
+          {/* <img
+            className="w-100 homepageImage"
+            src="/public/statue.jpeg"
+          ></img> */}
+        <h1 className="title" >
+            Daily Artworks
         </h1>
 
-    <Link
-  className=" text-dark"
-  // style={{ color: '#ffffff' }}
+        <div className="auth-form">
+      
+          <Link
+  className="buttons"
+  style={{ color: 'palevioletred' }}
   to="/signup"
 >
   Sign up
 </Link>
-    <p style={{ fontSize: '25px' }}>
+    <p style={{ fontSize: '15px' }}>
     Already have an account?{' '}
     <Link
     className="buttons"
-    style={{ color: '#ffffff' }}
+    style={{ color: 'palevioletred' }}
     to="/login"
     >
     login
   </Link>
 </p>
+        </div>
+    </div>
+  </div>
 </>
 
        

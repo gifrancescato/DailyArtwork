@@ -40,19 +40,21 @@ export default function Login() {
 
 	return (
 		<>
+		<div className="signupWrap">
 			<h1>Login</h1>
 			<form onSubmit={handleSubmit}>
-				<label htmlFor="email">Email: </label>
-				<input type="text" value={email} onChange={handleEmail} />
-				<label htmlFor="password">Password: </label>
-				<input type="password" value={password} onChange={handlePassword} />
-				<button type="submit">Log In</button>
+				<div><label htmlFor="email">Email: </label>
+				<input className="input" type="text" value={email} onChange={handleEmail} /></div>
+				<div><label htmlFor="password">Password: </label>
+				<input className="input" type="password" value={password} onChange={handlePassword} /></div>
+				<div><button className="buttons" type="submit">Log In</button></div>
 			</form>
 
 			{errorMessage && <h5>{errorMessage}</h5>}
 
-			<h3>Don't have an account?</h3>
+			<h3 style={{ fontSize: '15px' }}>Don't have an account?</h3>
 			<Link to='/signup'>Signup</Link>
+			</div>
 		</>
 	)
 }

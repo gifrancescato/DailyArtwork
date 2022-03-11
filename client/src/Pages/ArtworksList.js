@@ -87,7 +87,8 @@ export default function ArtworksList() {
       
         return (
         <>
-            
+         <div className='artwork-wrap'>
+        <div className='artwork'>
             {artworks.edmPreview && (
                 <img
             src= {artworks.edmPreview[0]}
@@ -101,13 +102,14 @@ export default function ArtworksList() {
                 {artworks.title[0]}
             </h2>
             )}
-            
+        
             
 
         <button className="buttons" onClick={() => window.location.reload(false)}>Get a new artwork</button>
         <button className="buttons" onClick={handleSubmit }>Save to favourites</button>
-        <button className="buttons" onClick={event =>  window.location.href='/favourites'}>Your favourites</button>
-
+        {/* <button className="buttons" onClick={event =>  window.location.href='/favourites'}>Your favourites</button> */}
+        </div>
+        </div>
         {/* <link to="/favourites" className="btn btn-primary">Favourites </link> */}
 
 
